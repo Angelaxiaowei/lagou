@@ -1,0 +1,3188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./js/jquery-3.2.0.min.js"></script>
+</head>
+	<style>
+		html,body,ul,li,a,h2{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			font-size: 14px;
+    		font-family: "Hiragino Sans GB","Microsoft Yahei",SimSun,Arial,"Helvetica Neue",Helvetica;
+		}
+		a{
+			text-decoration: none;
+		}
+		.header{
+			width: 100%;
+			height: 86px;
+		}
+		.head-top{
+			min-width: 1200px;
+			height: 30px;
+			background-color:#333; 
+		}
+		.inner{
+			position: relative;
+		    max-width: 1308px;
+		    margin: 0 auto;
+		}
+		.inner-l{
+			float: left;
+		}
+		.inner-l a{
+			float: left;
+			display: block;
+			color: #08d7a2;
+			padding: 0 12px 0 10px;
+			line-height: 30px;
+		}
+		.inner-l img{
+			float: left;
+			margin-top: 7px;
+		}
+		.lg-os{
+			float: left;
+		    padding: 0 12px;
+		}
+		.inner-l .lg-os{
+			border-left: 1px solid #5d5d5d;
+		}
+		.inner-r{
+			float: right;
+		}
+		.inner-r a{
+			float: left;
+			display: block;
+			color: #c4c3c3;
+			padding: 0 12px 0 10px;
+			line-height: 30px;
+		}
+		.b1{
+			border-right: 1px solid #5d5d5d;
+		}
+		#selected{
+			color: #00b38a;
+		}
+		.head-bottom{
+			height: 54px;
+			border-bottom: 1px solid #e5e5e5;
+			border-top: 1px solid #e2e2e2;
+			background-color: #fafafa;
+		}
+		.hd-content{
+			width: 1200px;
+			margin: 0 auto;
+		}
+		.hd-1{
+			float: left;
+			width: 260px;
+			height: 55px;
+		}
+		.hd-1 img{
+			float: left;
+			width: 97px;
+			height: 34px;
+			margin: 10px 0 0;
+		}
+		.suggestcity{
+			float: left;
+		    height: 44px;
+		    padding-top: 10px;
+		    padding-left: 12px;
+		    font-size: 18px;
+		    line-height: 44px;
+		}
+		.suggestcity strong{
+			margin-right: 8px;
+		    color: #333;
+		    font-size: 18px;
+		    font-weight: 400;
+		}
+		.suggestcity em{
+			color: #999;
+   			font-size: 12px;
+   			font-style: normal;
+		}
+		.clearfix::after{
+			content: "";
+			display: block;
+			height: 0;
+			clear: both;
+		}
+		.head-bottom .wrap{
+			float: left;
+			list-style: none;
+			width: 406px;
+			height: 55px;
+		}
+		.wrap a{
+			float: left;
+			display: block;
+		    font-size: 18px;
+		    color: #999;
+		    line-height: 53px;
+		    padding: 0 5px;
+			color: #999;
+			margin: 0 16px;
+		}
+		.wrap li{
+			display: inline-block;
+		}
+		.wrap .selected{
+			color: #333;
+			border-bottom: 2px solid #00b38a;
+		}
+		.wrap a:hover{
+			color: #333;
+			border-bottom: 2px solid #00b38a;
+		}
+		.contain{
+			padding-bottom: 91px;
+		}
+		.contain-header{
+			position: relative;
+		}
+		.search-wrapper{
+			background-color: #f2f5f4;
+			padding: 30px 0 28px;
+			min-width: 1200px;
+		}
+		.search-box{
+			width: 938px;
+		    height: 46px;
+		    margin: 0 auto;
+		    position: relative;
+		}
+		.search-form{
+			float: left;
+			width: 762px;
+		    height: 20px;	
+		    line-height: 20px;
+		    font-size: 16px;
+		    padding: 12px 16px; 
+		    font-family: "Microsoft Yahei"   
+		}
+		.search-button{
+			float: left;
+			width: 137px;
+			height: 48px;
+			font-size: 18px;
+			border: none;
+			color: #fff;
+			background:#00b38a;
+			font-family: "Microsoft Yahei"
+		}
+		.hotsearch{
+			width: 938px;
+		    height: 22px;
+		    overflow: hidden;
+		    margin: 6px auto 0;
+		}
+		.hotsearch dt{
+			float: left;
+			margin-right: -18px;
+			font-size: 14px;
+			color: #777;
+		}
+		.hotsearch dd{
+			float: left;
+			margin-right: -14px;
+			color: #999;
+		}
+		.hotsearch dd a.highlight{
+			color: #00b38a;
+		}
+		.hotsearch dd a:hover{
+			border-bottom: 1px solid  #00b38a;
+		}
+		.sidebar{
+			float: left;
+			position: relative;
+			width: 321px;
+			margin-left: -15px;
+		}
+		.contain-body{
+			width: 1200px;
+			margin: 26px auto 0;
+		}
+		.menu-box{
+			position: relative;
+		}
+		.menu-main{
+			position: relative;
+			padding: 18px 0 17px;
+		}
+		/*.menu-hid dl dd a:hover{
+			color: #00b38a;
+			border-bottom: 1px solid #00b38a;
+		}*/
+		.category{
+			position: relative;
+		    height: 20px;
+		    line-height: 20px;
+		    overflow: hidden;
+		    border-right: 0;
+		}
+		.category h2{
+			display: inline-block;
+		    padding-left: 15px;
+		    margin: 0;
+		    font-size: 18px;
+		    font-weight: 500;
+		}
+		.category a{
+			margin: 0 5px 5px 0;
+    		padding: 0 8px;
+    		color: #555;
+		}
+		.category img{
+			position: absolute;
+		    right: 0;
+		    top: 6px;
+		    width: 6px;
+		    height: 11px;
+		    margin-right: 8px;
+		}
+		.menu-hid{
+			position: absolute;
+		    left: 321px;
+		    top: 0;
+		    width: 600px;
+		    padding: 20px 10px 0 12px;
+		    z-index: 10;
+		    background: #fff;
+		    border-radius: 2px;
+    		border-top-left-radius: 0;
+    		box-shadow: 0 0 4px 2px rgba(0,0,0,.09);
+    		display: none;
+		}
+		.menu-hid dl{
+			margin:  0 0 17px;
+		}
+		.menu-hid dt{
+			position: relative;
+		    width: 70px;
+		    margin: 0;
+		    padding-left: 10px;
+		    font-size: 14px;
+		    line-height: 20px;
+		    margin-bottom: 6px;
+		}
+		.menu-hid dd{
+			color: #555;
+    		font-size: 0;
+		}
+		.menu-hid dd a{
+			display: inline-block;
+		    position: relative;
+		    margin-left: -1px;
+		    padding: 0 11px;
+		    font-size: 14px;
+		    line-height: 28px;
+		    text-decoration: none;
+		    color: #555;
+		}
+		.currer{
+			border-top-left-radius: 2px;
+			border-bottom-left-radius: 2px;
+			box-shadow: 0 0 4px 2px rgba(0,0,0,.09);
+			background: #fff;
+		}	
+		.home_banner{
+			position: relative;
+			top: 24px;
+		    margin-left: 360px;
+		    margin-top: 25px;
+		    height: 346px;
+		    overflow: hidden;
+		    background-color: #F2F5F4;
+		    background-image: url("./image/CgotOVngUeuAL7mFAAN8kyryYMw965.JPG");
+		    background-size: cover;
+		}
+		.job-tab{
+			margin-top: 52px;
+			margin-bottom: 14px;
+			border-bottom: 1px solid #e8e8e8;
+			list-style: none;
+		}	
+		.select{
+			border-bottom: 2px solid #333;
+		    background: #fff;
+		    color: #333;
+		}
+		.hotTab{
+			display: inline-block;
+		    padding: 14px 0;
+		    margin-right: 58px;
+		    font-size: 16px;
+		}
+		.newTab{
+			display: inline-block;
+		    padding: 14px 0;
+		    margin-right: 58px;
+		    font-size: 16px;
+		    color: #999;
+		}
+		.pos_list{
+			width: 1216px;
+			list-style: none;
+			position: relative;
+		}
+		.pos_list_item{
+			float: left;
+		    position: relative;
+		    width: 351px;
+		    height: 200px;
+		    margin: 16px 16px 0 0;
+		    padding: 20px 18px 0;
+		    border: 1px solid #EAEEED;
+		    background-color: #fff;
+		}
+		.name{
+			float: left;
+			height: 22px;
+		    font-size: 0;
+		    max-width: 290px;
+		}
+		.name h2{
+			font-size: 16px;
+			font-weight: 400;
+		    display: inline-block;
+		    margin-right: 5px;
+		    color: #333;
+		}
+		.name span{
+			font-size: 14px;
+			color: #999;
+			display: inline-block;
+			position: relative;
+		}
+		.chat_me{
+			display: inline-block;
+		    position: relative;
+		    width: 16px;
+		    height: 16px;
+		    background-image: url("./image/icon_chat2_d162651.png");
+		    position: absolute;
+		    top: 24px;
+		    left: 223px;
+		}
+		.top_1{
+			width: 389px;
+			height: 22px;
+		}
+		.top_1>span{
+			float: right;
+			font-size: 16px;
+    		color: #fa6041;
+    		position: absolute;
+    		right: 10px;
+		}
+		.top_middle{
+			height: 30px;
+		    line-height: 30px;
+		    color: #777;
+		}
+		.label{
+			margin-top: 5px;
+			margin-right: 20px;
+		    height: 30px;
+		    line-height: 30px;
+		    overflow: hidden;
+		}
+		.label span{
+			display: inline-block;
+		    width: 61px;
+		    height: 26px;
+		    padding: 0 5px;
+		    font-size: 12px;
+		    line-height: 26px;
+		    color: #999;
+		    border: 1px solid #F0F0F0;
+		    border-radius: 3px;
+		    text-align: center;
+		}
+		.item_bottom{
+			margin-top: 18px;
+		    padding-top: 18px;
+		    border-top: 1px dashed #E0E0E0;
+		}
+		.item_bottom img{
+			width: 40px;
+			height: 40px;
+			display: inline-block;
+			float: left;
+		}
+		.company_name a{
+			display: inline-block;
+			height: 20px;
+		    line-height: 20px;
+		    font-size: 14px;
+		    color: #333;
+		}
+		.bottom-right{
+			margin-left: 54px;
+		}
+		.industry span{
+			height: 20px;
+		    line-height: 20px;
+		    color: #999;
+		}
+		.pos_list_item:hover{
+			box-shadow: 0 0 4px 2px rgba(0,0,0,.09);
+		}
+		.chat_left{
+			width: 50%;
+		}
+		.chat_left_top{
+			width: 160px;
+			height: 80px;
+		}
+		.chat_up{
+			display: none;
+		    position: absolute;
+		    top: -30px;
+		    left: 40px;
+		    width: 312px;
+		    height: 132px;
+		    padding: 16px;
+		    background: #fff;
+		    z-index: 1;
+		    border-radius: 3px;
+		    border: 1px solid #dce4e6;
+		    box-shadow: 1px 1px 2px #f2f2f2;
+		}
+		.headpic{
+			float: left;
+			width: 62px;
+		    height: 62px;
+		    border-radius: 50%;
+		    overflow: hidden;
+		    font-size: 22px;
+		    font-weight: 700;
+		    line-height: 62px;
+		    text-align: center;
+			color: #fff;
+			background: #ffe45d;
+		}
+		.head_name{
+			float: left;
+			margin-left: 15px;
+		    font-size: 18px;
+		    line-height: 30px;
+		    color: #333;
+		    overflow: hidden;
+		}
+		.tips_text{
+			float: left;
+			font-size: 14px;
+			color: #333;
+    		line-height: 22px;
+		}
+		.chat_right img{
+			position: absolute;
+			bottom: 20px;
+			left: 200px;
+			width: 120px;
+			height: 120px;
+		}
+		.list_more a{
+			display:block;
+			width: 387px;
+		    height: 42px;
+		    line-height: 42px;
+		    margin: 16px auto 0;
+		    background: #FFF;
+		    border: 1px solid #00B38A;
+		    font-size: 16px;
+		    color: #00b38a;
+		    text-align: center;
+		    position: absolute;
+		    top: 1420px;
+		    left: 755px;
+		}
+		.list_more1 a{
+			display:block;
+			width: 387px;
+		    height: 42px;
+		    line-height: 42px;
+		    margin: 16px auto 0;
+		    background: #FFF;
+		    border: 1px solid #00B38A;
+		    font-size: 16px;
+		    color: #00b38a;
+		    text-align: center;
+		    position: absolute;
+		    top: 2146px;
+		    left: 755px;
+		}
+		.hide{
+			display: none;
+		}
+		.module-tab{
+			margin-top: 52px;
+		    margin-bottom: 14px;
+		    border-bottom: 1px solid #E8E8E8;
+		}
+		.module-tab li{
+			display: inline-block;
+		    padding: 14px 0;
+		    margin-right: 58px;
+		    font-size: 16px;
+		}
+		.job{
+			height: 750px;
+		}
+		.ad-company{
+			width: 1216px;
+			height: 595px;
+			margin: 0 auto;
+		}
+		.ad-company ul li{
+			list-style: none;
+		}
+		.company-item{
+			float: left;
+		    width: 286px;
+		    height: 270px;
+		    margin-top: 16px;
+		    margin-right: 16px;
+		    border: 1px solid #EEE;
+		}
+		.top{
+			margin: 0 13px;
+		    padding: 20px 0 14px;
+		    text-align: center;
+		    border-bottom: 1px dashed #E0E0E0
+		}
+		.top>a>img{
+			width: 80px;
+			height: 80px;
+		}
+		.company-name{
+			height: 22px;
+		    margin-top: 10px;
+		    font-size: 16px;
+		    color: #333;
+		    margin-bottom: 0;
+		}
+		.indus-stage{
+			height: 22px;
+		    margin-top: 3px;
+		    color: #999;
+		    margin-bottom: 0;
+		}
+		.advant{
+			margin-top: 5px;
+    		color: #555;
+    		margin-bottom: 0;
+		}
+		.bottom1,.bottom2,.bottom3{
+			position: relative;
+		    display: block;
+		    text-align: center;
+		}
+		.bottom1{
+			float: left;
+			width: 90px;
+		}
+		.bottom2{
+			float: left;
+			width: 90px;
+		}
+		.bottom3{
+			float: left;
+			width: 104px;
+		}
+		.green{
+			color: #00b38a;
+			margin-bottom: 0;
+		}
+		.grey{
+			margin-top: 4px;
+		    font-size: 12px;
+		    color: #999;
+		    margin-bottom: 0;
+		}
+		.gr-tab{
+			margin-top: 52px;
+		    margin-bottom: 14px;
+		    border-bottom: 1px solid #E8E8E8;
+		}
+		.gr-tab li{
+			display: inline-block;
+		    padding: 14px 0;
+		    margin-right: 58px;
+		    font-size: 16px;
+		}
+		.link{
+			width: 1120px;
+		    color: #555;
+		    font-size: 14px;
+		}
+		.link li{
+			list-style: none;
+			float: left;
+			padding: 8px 18px 8px 0;
+		}
+		.login{
+			width: 100%;
+			position: absolute;
+			bottom:-1480px;
+		    height: 60px;
+		    background: #09C084;
+		}
+		.fix{
+	         position: fixed;
+	         bottom: 0;
+	         left: 0;
+	         z-index: 9999;
+	         width: 100%;        
+		}
+		.tool-bar{
+			width: 1200px;
+		    height: 60px;
+		    margin: 0 auto;
+		    position: relative;
+		}
+		.tool-bar em{
+			width: 99px;
+		    height: 86px;
+		    background-image: url("./image/login_officer_bg_8c1de01.png");
+		    background-repeat: no-repeat;
+		    background-size: 99px 86px;
+		    position: absolute;
+		    bottom: 0;
+		    left: 0;
+		}
+		.text{
+			margin-left: 180px;
+			color: #fff;
+		}
+		.text1{
+			display: inline-block;
+		    height: 60px;
+		    line-height: 35px;
+		    font-size: 20px;
+		}
+		.text2{
+			width: 584px;
+			text-align: center;
+			margin-left: 180px;
+			font-size: 20px;
+			padding-right: 30px;
+			border-right: 1px solid #fff
+		}
+		.text3{
+			margin-left: 35px;
+			font-size: 20px;
+		}
+		.right{
+			height: 60px;
+		    position: absolute;
+		    right: 0;
+		    top: 0;
+		}
+		.denglu{
+			height: 38px;
+		    line-height: 38px;
+		    border: 1px solid #FFF;
+		    color: #FFF;
+		    display: inline-block;
+		    width: 89px;
+		    text-align: center;
+		    border-radius: 3px;
+		    font-size: 16px;
+		}
+		.zhuce{
+			margin-left: 17px;
+		    background: #FFF;
+		    color: #00b38a;
+		    display: inline-block;
+		    height: 40px;
+		    line-height: 40px;
+		    width: 89px;
+		    text-align: center;
+		    border-radius: 3px;
+		    font-size: 16px;
+		}
+		.footer{
+			min-width: 1024px;
+		    background-color: #fff;
+		    height: 67px;
+		    border-top: 1px solid #ebebeb;
+		    position: relative;
+		    z-index: 1001;
+		}
+		.wrapper{
+			width: 1024px;
+		    margin: 0 auto;
+		    position: relative;
+		}
+		.wrapper img{
+			position: absolute;
+		    left: 0;
+		    top: 9px;
+		    z-index: 1;
+		    display: block;
+		    width: 198px;
+		    height: 19px;
+		}
+		.inner-wrapper{
+			padding-top: 12px;
+		    float: right;
+		    height: 14px;
+		    line-height: 14px;
+		}
+		.inner-wrapper a{
+			margin-right:8px;
+			color: #555;
+    		font-size: 14px;
+		}
+		.copyright{
+			clear: both;
+			height: 12px;
+		    margin: 0 auto;
+		    padding-top: 13px;
+		    padding-bottom: 14px;
+		    color: #d5d5d5;
+		    font-size: 12px;
+		    line-height: 12px;
+		    text-align: center;
+		}
+	</style>
+<body>
+	<div class="header">
+		<div class="head-top">
+			<div class="inner">
+				<div class="inner-l">
+					<img src="./image/app_icon_0495d1d.png" alt="">
+					<a href="#">拉勾APP</a>
+					<a href="#" class="lg-os"><font color="#c4c3c3">进入企业版</font></a>
+				</div>
+				<div class="inner-r">
+					<a href="#" class="b1">登录</a>
+					<a href="#">注册</a>
+				</div>
+			</div>
+		</div>
+		<div class="head-bottom">
+			<div class="hd-content">
+				<div class="hd-1">
+					<img src="./image/logo_1c5763c.png" alt="">
+					<div class="suggestcity">
+						<strong>全国站</strong>
+						<em>[切换城市]</em>
+					</div>
+				</div>
+				<ul class="wrap clearfix">
+					<li><a href="#" class="selected">首页</a></li>
+					<li><a href="#">公司</a></li>
+					<li><a href="#">校园</a></li>
+					<li><a href="#">言职</a></li>
+					<li><a href="#">大鲲</a>	</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="contain clearfix">
+		<div class="contain-header">
+			<div class="search-wrapper">
+				<div class="search-box">
+					<input class="search-form" type="text" placeholder="搜索职位、公司或地点">
+					<input class="search-button" type="submit" value="搜索">
+				</div>
+				<dl class="hotsearch">
+					<dt>热门搜索:</dt>
+					<dd><a href="#" class="highlight">java</a></dd>
+					<dd><a href="#" class="highlight">新媒体运营</a></dd>
+					<dd><a href="#" class="highlight">UI设计师</a></dd>
+					<dd><a href="#" class="highlight">PHP</a></dd>
+					<dd><a href="#" class="highlight">销售经理</a></dd>
+					<dd><a href="#" class="highlight">产品经理</a></dd>
+					<dd><a href="#" class="highlight">C++</a></dd>
+					<dd><a href="#" class="highlight">内容运营</a></dd>
+					<dd><a href="#" class="highlight">拉勾APP</a></dd>
+				</dl>
+			</div>
+		</div>
+		<div class="contain-body clearfix">
+			<div class="sidebar">
+				<div class="mainnavs">
+					<div class="menu-box">
+							<div class="menu-main">
+								<div class="category">
+									<h2>技术</h2>
+									<a href="#">java</a>
+									<a href="#">PHP</a>
+									<a href="#">C++</a>
+									<a href="#">Andriod</a>
+									<img src="./image/arrow_92b8589.png" alt="">
+								</div>
+							</div>
+							<div class="menu-hid">
+								<dl>
+									<dt><span>后端开发</span></dt>
+									<dd>
+										<a href="#" id="selected">java</a>
+										<a href="#" id="selected">C++</a>
+										<a href="#" id="selected">PHP</a>
+										<a href="#" id="selected">数据挖掘</a>
+										<a href="#">搜索算法</a>
+										<a href="#">C</a>
+										<a href="#">C#</a>
+										<a href="#">全栈工程师</a>
+										<a href="#">.NET</a>
+										<a href="#">Hadoop</a>
+										<a href="#">Python</a>
+										<a href="#">Delphi</a>
+										<a href="#">VB</a>
+										<a href="#">Ruby</a>
+										<a href="#">Nodel.js</a>
+										<a href="#">Go</a>
+										<a href="#">ASP</a>
+										<a href="#">Shell</a>
+										<a href="#">后端其他开发</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>移动开发</span></dt>
+									<dd>
+										<a href="#">HTML5</a>
+										<a href="#" id="selected">Android</a>
+										<a href="#" id="selected">IOS</a>
+										<a href="#">WP</a>
+										<a href="#">移动开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>前端开发</span></dt>
+									<dd>
+										<a href="#">web前端</a>
+										<a href="#">Flash</a>
+										<a href="#" id="selected">html5</a>
+										<a href="#">javaScript</a>
+										<a href="#">U3D</a>
+										<a href="#">COCOS2D-X</a>
+										<a href="#">前端开发其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>人工智能</span></dt>
+									<dd>
+										<a href="#" id="selected">深度学习</a>
+										<a href="#" id="selected">机器学习</a>
+										<a href="#">图像处理</a>
+										<a href="#">图像识别</a>
+										<a href="#">语音师别</a>
+										<a href="#">机器视觉</a>
+										<a href="#">算法工程师</a>
+										<a href="#" id="selected">自然语言处理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>测试</span></dt>
+									<dd>
+										<a href="#">测试工程师</a>
+										<a href="#">自动化测试</a>
+										<a href="#">功能测试</a>
+										<a href="#">性能测试</a>
+										<a href="#">测试开发</a>
+										<a href="#">游戏测试</a>
+										<a href="#">白盒测试</a>
+										<a href="#">灰盒测试</a>
+										<a href="#">黑盒测试</a>
+										<a href="#">手机测试</a>
+										<a href="#">硬件测试</a>
+										<a href="#">测试经理</a>
+										<a href="#">测试其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>运维</span></dt>
+									<dd>
+										<a href="#">运维工程师</a>
+										<a href="#">运维开发工程师</a>
+										<a href="#">网络工程师</a>
+										<a href="#">系统工程师</a>
+										<a href="#">IT支持</a>
+										<a href="#">IDC</a>
+										<a href="#">CDN</a>
+										<a href="#">F5</a>
+										<a href="#">系统管理员</a>
+										<a href="#">病毒分析</a>
+										<a href="#">WEB安全</a>
+										<a href="#">网络安全</a>
+										<a href="#">系统安全</a>
+										<a href="#">运维经理</a>
+										<a href="#">运维其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>DBA</span></dt>
+									<dd>
+										<a href="#">MySQL</a>
+										<a href="#">SQLServer</a>
+										<a href="#">Oracle</a>
+										<a href="#">DB2</a>
+										<a href="#">MongoDB</a>
+										<a href="#">ETL</a>
+										<a href="#">Hive</a>
+										<a href="#">数据仓库</a>
+										<a href="#">DBA其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>高端职位</span></dt>
+									<dd>
+										<a href="#">技术经理</a>
+										<a href="#" id="selected">技术总监</a>
+										<a href="#" id="selected">架构师</a>
+										<a href="#" id="selected">CTO</a>
+										<a href="#">运维总监</a>
+										<a href="#">技术合伙人</a>
+										<a href="#">项目总监</a>
+										<a href="#">测试总监</a>
+										<a href="#">安全专家</a>
+										<a href="#">高端技术及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>项目管理</span></dt>
+									<dd>
+										<a href="#">项目经理</a>
+										<a href="#">项目助理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>硬件开发</span></dt>
+									<dd>
+										<a href="#">硬件</a>
+										<a href="#">嵌入式</a>
+										<a href="#">自动化</a>
+										<a href="#">单片机</a>
+										<a href="#">电路设计</a>
+										<a href="#">驱动开发</a>
+										<a href="#">系统集成</a>
+										<a href="#">FPGA开发</a>
+										<a href="#">DSP开发</a>
+										<a href="#">ARM开发</a>
+										<a href="#">PCB工艺</a>
+										<a href="#">模具设计</a>
+										<a href="#">热传导</a>
+										<a href="#">材料工程师</a>
+										<a href="#">精益工程师</a>
+										<a href="#">射频工程师</a>
+										<a href="#">硬件开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>企业软件</span></dt>
+									<dd>
+										<a href="#">实施工程师</a>
+										<a href="#">售前工程师</a>
+										<a href="#">售后工程师</a>
+										<a href="#">BI工程师</a>
+										<a href="#">企业软件及其他</a>
+									</dd>
+								</dl>
+							</div>
+					</div>
+					<div class="menu-box">
+							<div class="menu-main">
+								<div class="category">
+									<h2>产品</h2>
+									<a href="#">产品总监</a>
+									<a href="#">产品经理</a>
+									<img src="./image/arrow_92b8589.png" alt="">
+								</div>
+							</div>
+							<div class="menu-hid">
+								<dl>
+									<dt><span>后端开发</span></dt>
+									<dd>
+										<a href="#" id="selected">java</a>
+										<a href="#" id="selected">C++</a>
+										<a href="#" id="selected">PHP</a>
+										<a href="#" id="selected">数据挖掘</a>
+										<a href="#">搜索算法</a>
+										<a href="#">C</a>
+										<a href="#">C#</a>
+										<a href="#">全栈工程师</a>
+										<a href="#">.NET</a>
+										<a href="#">Hadoop</a>
+										<a href="#">Python</a>
+										<a href="#">Delphi</a>
+										<a href="#">VB</a>
+										<a href="#">Ruby</a>
+										<a href="#">Nodel.js</a>
+										<a href="#">Go</a>
+										<a href="#">ASP</a>
+										<a href="#">Shell</a>
+										<a href="#">后端其他开发</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>移动开发</span></dt>
+									<dd>
+										<a href="#">HTML5</a>
+										<a href="#" id="selected">Android</a>
+										<a href="#" id="selected">IOS</a>
+										<a href="#">WP</a>
+										<a href="#">移动开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>前端开发</span></dt>
+									<dd>
+										<a href="#">web前端</a>
+										<a href="#">Flash</a>
+										<a href="#" id="selected">html5</a>
+										<a href="#">javaScript</a>
+										<a href="#">U3D</a>
+										<a href="#">COCOS2D-X</a>
+										<a href="#">前端开发其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>人工智能</span></dt>
+									<dd>
+										<a href="#" id="selected">深度学习</a>
+										<a href="#" id="selected">机器学习</a>
+										<a href="#">图像处理</a>
+										<a href="#">图像识别</a>
+										<a href="#">语音师别</a>
+										<a href="#">机器视觉</a>
+										<a href="#">算法工程师</a>
+										<a href="#" id="selected">自然语言处理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>测试</span></dt>
+									<dd>
+										<a href="#">测试工程师</a>
+										<a href="#">自动化测试</a>
+										<a href="#">功能测试</a>
+										<a href="#">性能测试</a>
+										<a href="#">测试开发</a>
+										<a href="#">游戏测试</a>
+										<a href="#">白盒测试</a>
+										<a href="#">灰盒测试</a>
+										<a href="#">黑盒测试</a>
+										<a href="#">手机测试</a>
+										<a href="#">硬件测试</a>
+										<a href="#">测试经理</a>
+										<a href="#">测试其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>运维</span></dt>
+									<dd>
+										<a href="#">运维工程师</a>
+										<a href="#">运维开发工程师</a>
+										<a href="#">网络工程师</a>
+										<a href="#">系统工程师</a>
+										<a href="#">IT支持</a>
+										<a href="#">IDC</a>
+										<a href="#">CDN</a>
+										<a href="#">F5</a>
+										<a href="#">系统管理员</a>
+										<a href="#">病毒分析</a>
+										<a href="#">WEB安全</a>
+										<a href="#">网络安全</a>
+										<a href="#">系统安全</a>
+										<a href="#">运维经理</a>
+										<a href="#">运维其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>DBA</span></dt>
+									<dd>
+										<a href="#">MySQL</a>
+										<a href="#">SQLServer</a>
+										<a href="#">Oracle</a>
+										<a href="#">DB2</a>
+										<a href="#">MongoDB</a>
+										<a href="#">ETL</a>
+										<a href="#">Hive</a>
+										<a href="#">数据仓库</a>
+										<a href="#">DBA其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>高端职位</span></dt>
+									<dd>
+										<a href="#">技术经理</a>
+										<a href="#" id="selected">技术总监</a>
+										<a href="#" id="selected">架构师</a>
+										<a href="#" id="selected">CTO</a>
+										<a href="#">运维总监</a>
+										<a href="#">技术合伙人</a>
+										<a href="#">项目总监</a>
+										<a href="#">测试总监</a>
+										<a href="#">安全专家</a>
+										<a href="#">高端技术及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>项目管理</span></dt>
+									<dd>
+										<a href="#">项目经理</a>
+										<a href="#">项目助理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>硬件开发</span></dt>
+									<dd>
+										<a href="#">硬件</a>
+										<a href="#">嵌入式</a>
+										<a href="#">自动化</a>
+										<a href="#">单片机</a>
+										<a href="#">电路设计</a>
+										<a href="#">驱动开发</a>
+										<a href="#">系统集成</a>
+										<a href="#">FPGA开发</a>
+										<a href="#">DSP开发</a>
+										<a href="#">ARM开发</a>
+										<a href="#">PCB工艺</a>
+										<a href="#">模具设计</a>
+										<a href="#">热传导</a>
+										<a href="#">材料工程师</a>
+										<a href="#">精益工程师</a>
+										<a href="#">射频工程师</a>
+										<a href="#">硬件开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>企业软件</span></dt>
+									<dd>
+										<a href="#">实施工程师</a>
+										<a href="#">售前工程师</a>
+										<a href="#">售后工程师</a>
+										<a href="#">BI工程师</a>
+										<a href="#">企业软件及其他</a>
+									</dd>
+								</dl>
+							</div>
+					</div>
+					<div class="menu-box">
+							<div class="menu-main">
+								<div class="category">
+									<h2>设计</h2>
+									<a href="#">UI设计师</a>
+									<a href="#">交互设计</a>
+									<a href="#">网页设计师</a>
+									<img src="./image/arrow_92b8589.png" alt="">
+								</div>
+							</div>
+							<div class="menu-hid">
+								<dl>
+									<dt><span>后端开发</span></dt>
+									<dd>
+										<a href="#" id="selected">java</a>
+										<a href="#" id="selected">C++</a>
+										<a href="#" id="selected">PHP</a>
+										<a href="#" id="selected">数据挖掘</a>
+										<a href="#">搜索算法</a>
+										<a href="#">C</a>
+										<a href="#">C#</a>
+										<a href="#">全栈工程师</a>
+										<a href="#">.NET</a>
+										<a href="#">Hadoop</a>
+										<a href="#">Python</a>
+										<a href="#">Delphi</a>
+										<a href="#">VB</a>
+										<a href="#">Ruby</a>
+										<a href="#">Nodel.js</a>
+										<a href="#">Go</a>
+										<a href="#">ASP</a>
+										<a href="#">Shell</a>
+										<a href="#">后端其他开发</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>移动开发</span></dt>
+									<dd>
+										<a href="#">HTML5</a>
+										<a href="#" id="selected">Android</a>
+										<a href="#" id="selected">IOS</a>
+										<a href="#">WP</a>
+										<a href="#">移动开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>前端开发</span></dt>
+									<dd>
+										<a href="#">web前端</a>
+										<a href="#">Flash</a>
+										<a href="#" id="selected">html5</a>
+										<a href="#">javaScript</a>
+										<a href="#">U3D</a>
+										<a href="#">COCOS2D-X</a>
+										<a href="#">前端开发其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>人工智能</span></dt>
+									<dd>
+										<a href="#" id="selected">深度学习</a>
+										<a href="#" id="selected">机器学习</a>
+										<a href="#">图像处理</a>
+										<a href="#">图像识别</a>
+										<a href="#">语音师别</a>
+										<a href="#">机器视觉</a>
+										<a href="#">算法工程师</a>
+										<a href="#" id="selected">自然语言处理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>测试</span></dt>
+									<dd>
+										<a href="#">测试工程师</a>
+										<a href="#">自动化测试</a>
+										<a href="#">功能测试</a>
+										<a href="#">性能测试</a>
+										<a href="#">测试开发</a>
+										<a href="#">游戏测试</a>
+										<a href="#">白盒测试</a>
+										<a href="#">灰盒测试</a>
+										<a href="#">黑盒测试</a>
+										<a href="#">手机测试</a>
+										<a href="#">硬件测试</a>
+										<a href="#">测试经理</a>
+										<a href="#">测试其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>运维</span></dt>
+									<dd>
+										<a href="#">运维工程师</a>
+										<a href="#">运维开发工程师</a>
+										<a href="#">网络工程师</a>
+										<a href="#">系统工程师</a>
+										<a href="#">IT支持</a>
+										<a href="#">IDC</a>
+										<a href="#">CDN</a>
+										<a href="#">F5</a>
+										<a href="#">系统管理员</a>
+										<a href="#">病毒分析</a>
+										<a href="#">WEB安全</a>
+										<a href="#">网络安全</a>
+										<a href="#">系统安全</a>
+										<a href="#">运维经理</a>
+										<a href="#">运维其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>DBA</span></dt>
+									<dd>
+										<a href="#">MySQL</a>
+										<a href="#">SQLServer</a>
+										<a href="#">Oracle</a>
+										<a href="#">DB2</a>
+										<a href="#">MongoDB</a>
+										<a href="#">ETL</a>
+										<a href="#">Hive</a>
+										<a href="#">数据仓库</a>
+										<a href="#">DBA其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>高端职位</span></dt>
+									<dd>
+										<a href="#">技术经理</a>
+										<a href="#" id="selected">技术总监</a>
+										<a href="#" id="selected">架构师</a>
+										<a href="#" id="selected">CTO</a>
+										<a href="#">运维总监</a>
+										<a href="#">技术合伙人</a>
+										<a href="#">项目总监</a>
+										<a href="#">测试总监</a>
+										<a href="#">安全专家</a>
+										<a href="#">高端技术及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>项目管理</span></dt>
+									<dd>
+										<a href="#">项目经理</a>
+										<a href="#">项目助理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>硬件开发</span></dt>
+									<dd>
+										<a href="#">硬件</a>
+										<a href="#">嵌入式</a>
+										<a href="#">自动化</a>
+										<a href="#">单片机</a>
+										<a href="#">电路设计</a>
+										<a href="#">驱动开发</a>
+										<a href="#">系统集成</a>
+										<a href="#">FPGA开发</a>
+										<a href="#">DSP开发</a>
+										<a href="#">ARM开发</a>
+										<a href="#">PCB工艺</a>
+										<a href="#">模具设计</a>
+										<a href="#">热传导</a>
+										<a href="#">材料工程师</a>
+										<a href="#">精益工程师</a>
+										<a href="#">射频工程师</a>
+										<a href="#">硬件开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>企业软件</span></dt>
+									<dd>
+										<a href="#">实施工程师</a>
+										<a href="#">售前工程师</a>
+										<a href="#">售后工程师</a>
+										<a href="#">BI工程师</a>
+										<a href="#">企业软件及其他</a>
+									</dd>
+								</dl>
+							</div>
+					</div>
+					<div class="menu-box">
+							<div class="menu-main">
+								<div class="category">
+									<h2>运营</h2>
+									<a href="#">新媒体运营</a>
+									<a href="#">编辑</a>
+									<a href="#">数据运营</a>
+									<img src="./image/arrow_92b8589.png" alt="">
+								</div>
+							</div>
+							<div class="menu-hid">
+								<dl>
+									<dt><span>后端开发</span></dt>
+									<dd>
+										<a href="#" id="selected">java</a>
+										<a href="#" id="selected">C++</a>
+										<a href="#" id="selected">PHP</a>
+										<a href="#" id="selected">数据挖掘</a>
+										<a href="#">搜索算法</a>
+										<a href="#">C</a>
+										<a href="#">C#</a>
+										<a href="#">全栈工程师</a>
+										<a href="#">.NET</a>
+										<a href="#">Hadoop</a>
+										<a href="#">Python</a>
+										<a href="#">Delphi</a>
+										<a href="#">VB</a>
+										<a href="#">Ruby</a>
+										<a href="#">Nodel.js</a>
+										<a href="#">Go</a>
+										<a href="#">ASP</a>
+										<a href="#">Shell</a>
+										<a href="#">后端其他开发</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>移动开发</span></dt>
+									<dd>
+										<a href="#">HTML5</a>
+										<a href="#" id="selected">Android</a>
+										<a href="#" id="selected">IOS</a>
+										<a href="#">WP</a>
+										<a href="#">移动开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>前端开发</span></dt>
+									<dd>
+										<a href="#">web前端</a>
+										<a href="#">Flash</a>
+										<a href="#" id="selected">html5</a>
+										<a href="#">javaScript</a>
+										<a href="#">U3D</a>
+										<a href="#">COCOS2D-X</a>
+										<a href="#">前端开发其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>人工智能</span></dt>
+									<dd>
+										<a href="#" id="selected">深度学习</a>
+										<a href="#" id="selected">机器学习</a>
+										<a href="#">图像处理</a>
+										<a href="#">图像识别</a>
+										<a href="#">语音师别</a>
+										<a href="#">机器视觉</a>
+										<a href="#">算法工程师</a>
+										<a href="#" id="selected">自然语言处理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>测试</span></dt>
+									<dd>
+										<a href="#">测试工程师</a>
+										<a href="#">自动化测试</a>
+										<a href="#">功能测试</a>
+										<a href="#">性能测试</a>
+										<a href="#">测试开发</a>
+										<a href="#">游戏测试</a>
+										<a href="#">白盒测试</a>
+										<a href="#">灰盒测试</a>
+										<a href="#">黑盒测试</a>
+										<a href="#">手机测试</a>
+										<a href="#">硬件测试</a>
+										<a href="#">测试经理</a>
+										<a href="#">测试其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>运维</span></dt>
+									<dd>
+										<a href="#">运维工程师</a>
+										<a href="#">运维开发工程师</a>
+										<a href="#">网络工程师</a>
+										<a href="#">系统工程师</a>
+										<a href="#">IT支持</a>
+										<a href="#">IDC</a>
+										<a href="#">CDN</a>
+										<a href="#">F5</a>
+										<a href="#">系统管理员</a>
+										<a href="#">病毒分析</a>
+										<a href="#">WEB安全</a>
+										<a href="#">网络安全</a>
+										<a href="#">系统安全</a>
+										<a href="#">运维经理</a>
+										<a href="#">运维其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>DBA</span></dt>
+									<dd>
+										<a href="#">MySQL</a>
+										<a href="#">SQLServer</a>
+										<a href="#">Oracle</a>
+										<a href="#">DB2</a>
+										<a href="#">MongoDB</a>
+										<a href="#">ETL</a>
+										<a href="#">Hive</a>
+										<a href="#">数据仓库</a>
+										<a href="#">DBA其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>高端职位</span></dt>
+									<dd>
+										<a href="#">技术经理</a>
+										<a href="#" id="selected">技术总监</a>
+										<a href="#" id="selected">架构师</a>
+										<a href="#" id="selected">CTO</a>
+										<a href="#">运维总监</a>
+										<a href="#">技术合伙人</a>
+										<a href="#">项目总监</a>
+										<a href="#">测试总监</a>
+										<a href="#">安全专家</a>
+										<a href="#">高端技术及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>项目管理</span></dt>
+									<dd>
+										<a href="#">项目经理</a>
+										<a href="#">项目助理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>硬件开发</span></dt>
+									<dd>
+										<a href="#">硬件</a>
+										<a href="#">嵌入式</a>
+										<a href="#">自动化</a>
+										<a href="#">单片机</a>
+										<a href="#">电路设计</a>
+										<a href="#">驱动开发</a>
+										<a href="#">系统集成</a>
+										<a href="#">FPGA开发</a>
+										<a href="#">DSP开发</a>
+										<a href="#">ARM开发</a>
+										<a href="#">PCB工艺</a>
+										<a href="#">模具设计</a>
+										<a href="#">热传导</a>
+										<a href="#">材料工程师</a>
+										<a href="#">精益工程师</a>
+										<a href="#">射频工程师</a>
+										<a href="#">硬件开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>企业软件</span></dt>
+									<dd>
+										<a href="#">实施工程师</a>
+										<a href="#">售前工程师</a>
+										<a href="#">售后工程师</a>
+										<a href="#">BI工程师</a>
+										<a href="#">企业软件及其他</a>
+									</dd>
+								</dl>
+							</div>
+					</div>
+					<div class="menu-box">
+							<div class="menu-main">
+								<div class="category">
+									<h2>市场与销售</h2>
+									<a href="#">市场推广</a>
+									<a href="#">市场总监</a>
+									<img src="./image/arrow_92b8589.png" alt="">
+								</div>
+							</div>
+							<div class="menu-hid">
+								<dl>
+									<dt><span>后端开发</span></dt>
+									<dd>
+										<a href="#" id="selected">java</a>
+										<a href="#" id="selected">C++</a>
+										<a href="#" id="selected">PHP</a>
+										<a href="#" id="selected">数据挖掘</a>
+										<a href="#">搜索算法</a>
+										<a href="#">C</a>
+										<a href="#">C#</a>
+										<a href="#">全栈工程师</a>
+										<a href="#">.NET</a>
+										<a href="#">Hadoop</a>
+										<a href="#">Python</a>
+										<a href="#">Delphi</a>
+										<a href="#">VB</a>
+										<a href="#">Ruby</a>
+										<a href="#">Nodel.js</a>
+										<a href="#">Go</a>
+										<a href="#">ASP</a>
+										<a href="#">Shell</a>
+										<a href="#">后端其他开发</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>移动开发</span></dt>
+									<dd>
+										<a href="#">HTML5</a>
+										<a href="#" id="selected">Android</a>
+										<a href="#" id="selected">IOS</a>
+										<a href="#">WP</a>
+										<a href="#">移动开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>前端开发</span></dt>
+									<dd>
+										<a href="#">web前端</a>
+										<a href="#">Flash</a>
+										<a href="#" id="selected">html5</a>
+										<a href="#">javaScript</a>
+										<a href="#">U3D</a>
+										<a href="#">COCOS2D-X</a>
+										<a href="#">前端开发其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>人工智能</span></dt>
+									<dd>
+										<a href="#" id="selected">深度学习</a>
+										<a href="#" id="selected">机器学习</a>
+										<a href="#">图像处理</a>
+										<a href="#">图像识别</a>
+										<a href="#">语音师别</a>
+										<a href="#">机器视觉</a>
+										<a href="#">算法工程师</a>
+										<a href="#" id="selected">自然语言处理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>测试</span></dt>
+									<dd>
+										<a href="#">测试工程师</a>
+										<a href="#">自动化测试</a>
+										<a href="#">功能测试</a>
+										<a href="#">性能测试</a>
+										<a href="#">测试开发</a>
+										<a href="#">游戏测试</a>
+										<a href="#">白盒测试</a>
+										<a href="#">灰盒测试</a>
+										<a href="#">黑盒测试</a>
+										<a href="#">手机测试</a>
+										<a href="#">硬件测试</a>
+										<a href="#">测试经理</a>
+										<a href="#">测试其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>运维</span></dt>
+									<dd>
+										<a href="#">运维工程师</a>
+										<a href="#">运维开发工程师</a>
+										<a href="#">网络工程师</a>
+										<a href="#">系统工程师</a>
+										<a href="#">IT支持</a>
+										<a href="#">IDC</a>
+										<a href="#">CDN</a>
+										<a href="#">F5</a>
+										<a href="#">系统管理员</a>
+										<a href="#">病毒分析</a>
+										<a href="#">WEB安全</a>
+										<a href="#">网络安全</a>
+										<a href="#">系统安全</a>
+										<a href="#">运维经理</a>
+										<a href="#">运维其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>DBA</span></dt>
+									<dd>
+										<a href="#">MySQL</a>
+										<a href="#">SQLServer</a>
+										<a href="#">Oracle</a>
+										<a href="#">DB2</a>
+										<a href="#">MongoDB</a>
+										<a href="#">ETL</a>
+										<a href="#">Hive</a>
+										<a href="#">数据仓库</a>
+										<a href="#">DBA其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>高端职位</span></dt>
+									<dd>
+										<a href="#">技术经理</a>
+										<a href="#" id="selected">技术总监</a>
+										<a href="#" id="selected">架构师</a>
+										<a href="#" id="selected">CTO</a>
+										<a href="#">运维总监</a>
+										<a href="#">技术合伙人</a>
+										<a href="#">项目总监</a>
+										<a href="#">测试总监</a>
+										<a href="#">安全专家</a>
+										<a href="#">高端技术及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>项目管理</span></dt>
+									<dd>
+										<a href="#">项目经理</a>
+										<a href="#">项目助理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>硬件开发</span></dt>
+									<dd>
+										<a href="#">硬件</a>
+										<a href="#">嵌入式</a>
+										<a href="#">自动化</a>
+										<a href="#">单片机</a>
+										<a href="#">电路设计</a>
+										<a href="#">驱动开发</a>
+										<a href="#">系统集成</a>
+										<a href="#">FPGA开发</a>
+										<a href="#">DSP开发</a>
+										<a href="#">ARM开发</a>
+										<a href="#">PCB工艺</a>
+										<a href="#">模具设计</a>
+										<a href="#">热传导</a>
+										<a href="#">材料工程师</a>
+										<a href="#">精益工程师</a>
+										<a href="#">射频工程师</a>
+										<a href="#">硬件开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>企业软件</span></dt>
+									<dd>
+										<a href="#">实施工程师</a>
+										<a href="#">售前工程师</a>
+										<a href="#">售后工程师</a>
+										<a href="#">BI工程师</a>
+										<a href="#">企业软件及其他</a>
+									</dd>
+								</dl>
+							</div>
+					</div>
+					<div class="menu-box">
+							<div class="menu-main">
+								<div class="category">
+									<h2>职能</h2>
+									<a href="#">HR</a>
+									<a href="#">行政</a>
+									<a href="#">财务</a>
+									<a href="#">审计</a>
+									<img src="./image/arrow_92b8589.png" alt="">
+								</div>
+							</div>
+							<div class="menu-hid">
+								<dl>
+									<dt><span>后端开发</span></dt>
+									<dd>
+										<a href="#" id="selected">java</a>
+										<a href="#" id="selected">C++</a>
+										<a href="#" id="selected">PHP</a>
+										<a href="#" id="selected">数据挖掘</a>
+										<a href="#">搜索算法</a>
+										<a href="#">C</a>
+										<a href="#">C#</a>
+										<a href="#">全栈工程师</a>
+										<a href="#">.NET</a>
+										<a href="#">Hadoop</a>
+										<a href="#">Python</a>
+										<a href="#">Delphi</a>
+										<a href="#">VB</a>
+										<a href="#">Ruby</a>
+										<a href="#">Nodel.js</a>
+										<a href="#">Go</a>
+										<a href="#">ASP</a>
+										<a href="#">Shell</a>
+										<a href="#">后端其他开发</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>移动开发</span></dt>
+									<dd>
+										<a href="#">HTML5</a>
+										<a href="#" id="selected">Android</a>
+										<a href="#" id="selected">IOS</a>
+										<a href="#">WP</a>
+										<a href="#">移动开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>前端开发</span></dt>
+									<dd>
+										<a href="#">web前端</a>
+										<a href="#">Flash</a>
+										<a href="#" id="selected">html5</a>
+										<a href="#">javaScript</a>
+										<a href="#">U3D</a>
+										<a href="#">COCOS2D-X</a>
+										<a href="#">前端开发其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>人工智能</span></dt>
+									<dd>
+										<a href="#" id="selected">深度学习</a>
+										<a href="#" id="selected">机器学习</a>
+										<a href="#">图像处理</a>
+										<a href="#">图像识别</a>
+										<a href="#">语音师别</a>
+										<a href="#">机器视觉</a>
+										<a href="#">算法工程师</a>
+										<a href="#" id="selected">自然语言处理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>测试</span></dt>
+									<dd>
+										<a href="#">测试工程师</a>
+										<a href="#">自动化测试</a>
+										<a href="#">功能测试</a>
+										<a href="#">性能测试</a>
+										<a href="#">测试开发</a>
+										<a href="#">游戏测试</a>
+										<a href="#">白盒测试</a>
+										<a href="#">灰盒测试</a>
+										<a href="#">黑盒测试</a>
+										<a href="#">手机测试</a>
+										<a href="#">硬件测试</a>
+										<a href="#">测试经理</a>
+										<a href="#">测试其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>运维</span></dt>
+									<dd>
+										<a href="#">运维工程师</a>
+										<a href="#">运维开发工程师</a>
+										<a href="#">网络工程师</a>
+										<a href="#">系统工程师</a>
+										<a href="#">IT支持</a>
+										<a href="#">IDC</a>
+										<a href="#">CDN</a>
+										<a href="#">F5</a>
+										<a href="#">系统管理员</a>
+										<a href="#">病毒分析</a>
+										<a href="#">WEB安全</a>
+										<a href="#">网络安全</a>
+										<a href="#">系统安全</a>
+										<a href="#">运维经理</a>
+										<a href="#">运维其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>DBA</span></dt>
+									<dd>
+										<a href="#">MySQL</a>
+										<a href="#">SQLServer</a>
+										<a href="#">Oracle</a>
+										<a href="#">DB2</a>
+										<a href="#">MongoDB</a>
+										<a href="#">ETL</a>
+										<a href="#">Hive</a>
+										<a href="#">数据仓库</a>
+										<a href="#">DBA其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>高端职位</span></dt>
+									<dd>
+										<a href="#">技术经理</a>
+										<a href="#" id="selected">技术总监</a>
+										<a href="#" id="selected">架构师</a>
+										<a href="#" id="selected">CTO</a>
+										<a href="#">运维总监</a>
+										<a href="#">技术合伙人</a>
+										<a href="#">项目总监</a>
+										<a href="#">测试总监</a>
+										<a href="#">安全专家</a>
+										<a href="#">高端技术及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>项目管理</span></dt>
+									<dd>
+										<a href="#">项目经理</a>
+										<a href="#">项目助理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>硬件开发</span></dt>
+									<dd>
+										<a href="#">硬件</a>
+										<a href="#">嵌入式</a>
+										<a href="#">自动化</a>
+										<a href="#">单片机</a>
+										<a href="#">电路设计</a>
+										<a href="#">驱动开发</a>
+										<a href="#">系统集成</a>
+										<a href="#">FPGA开发</a>
+										<a href="#">DSP开发</a>
+										<a href="#">ARM开发</a>
+										<a href="#">PCB工艺</a>
+										<a href="#">模具设计</a>
+										<a href="#">热传导</a>
+										<a href="#">材料工程师</a>
+										<a href="#">精益工程师</a>
+										<a href="#">射频工程师</a>
+										<a href="#">硬件开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>企业软件</span></dt>
+									<dd>
+										<a href="#">实施工程师</a>
+										<a href="#">售前工程师</a>
+										<a href="#">售后工程师</a>
+										<a href="#">BI工程师</a>
+										<a href="#">企业软件及其他</a>
+									</dd>
+								</dl>
+							</div>
+					</div>
+					<div class="menu-box">
+							<div class="menu-main">
+								<div class="category">
+									<h2>金融</h2>
+									<a href="#">投资</a>
+									<a href="#">融资</a>
+									<a href="#">并购</a>
+									<a href="#">风控</a>
+									<img src="./image/arrow_92b8589.png" alt="">
+								</div>
+							</div>
+							<div class="menu-hid">
+								<dl>
+									<dt><span>后端开发</span></dt>
+									<dd>
+										<a href="#" id="selected">java</a>
+										<a href="#" id="selected">C++</a>
+										<a href="#" id="selected">PHP</a>
+										<a href="#" id="selected">数据挖掘</a>
+										<a href="#">搜索算法</a>
+										<a href="#">C</a>
+										<a href="#">C#</a>
+										<a href="#">全栈工程师</a>
+										<a href="#">.NET</a>
+										<a href="#">Hadoop</a>
+										<a href="#">Python</a>
+										<a href="#">Delphi</a>
+										<a href="#">VB</a>
+										<a href="#">Ruby</a>
+										<a href="#">Nodel.js</a>
+										<a href="#">Go</a>
+										<a href="#">ASP</a>
+										<a href="#">Shell</a>
+										<a href="#">后端其他开发</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>移动开发</span></dt>
+									<dd>
+										<a href="#">HTML5</a>
+										<a href="#" id="selected">Android</a>
+										<a href="#" id="selected">IOS</a>
+										<a href="#">WP</a>
+										<a href="#">移动开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>前端开发</span></dt>
+									<dd>
+										<a href="#">web前端</a>
+										<a href="#">Flash</a>
+										<a href="#" id="selected">html5</a>
+										<a href="#">javaScript</a>
+										<a href="#">U3D</a>
+										<a href="#">COCOS2D-X</a>
+										<a href="#">前端开发其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>人工智能</span></dt>
+									<dd>
+										<a href="#" id="selected">深度学习</a>
+										<a href="#" id="selected">机器学习</a>
+										<a href="#">图像处理</a>
+										<a href="#">图像识别</a>
+										<a href="#">语音师别</a>
+										<a href="#">机器视觉</a>
+										<a href="#">算法工程师</a>
+										<a href="#" id="selected">自然语言处理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>测试</span></dt>
+									<dd>
+										<a href="#">测试工程师</a>
+										<a href="#">自动化测试</a>
+										<a href="#">功能测试</a>
+										<a href="#">性能测试</a>
+										<a href="#">测试开发</a>
+										<a href="#">游戏测试</a>
+										<a href="#">白盒测试</a>
+										<a href="#">灰盒测试</a>
+										<a href="#">黑盒测试</a>
+										<a href="#">手机测试</a>
+										<a href="#">硬件测试</a>
+										<a href="#">测试经理</a>
+										<a href="#">测试其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>运维</span></dt>
+									<dd>
+										<a href="#">运维工程师</a>
+										<a href="#">运维开发工程师</a>
+										<a href="#">网络工程师</a>
+										<a href="#">系统工程师</a>
+										<a href="#">IT支持</a>
+										<a href="#">IDC</a>
+										<a href="#">CDN</a>
+										<a href="#">F5</a>
+										<a href="#">系统管理员</a>
+										<a href="#">病毒分析</a>
+										<a href="#">WEB安全</a>
+										<a href="#">网络安全</a>
+										<a href="#">系统安全</a>
+										<a href="#">运维经理</a>
+										<a href="#">运维其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>DBA</span></dt>
+									<dd>
+										<a href="#">MySQL</a>
+										<a href="#">SQLServer</a>
+										<a href="#">Oracle</a>
+										<a href="#">DB2</a>
+										<a href="#">MongoDB</a>
+										<a href="#">ETL</a>
+										<a href="#">Hive</a>
+										<a href="#">数据仓库</a>
+										<a href="#">DBA其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>高端职位</span></dt>
+									<dd>
+										<a href="#">技术经理</a>
+										<a href="#" id="selected">技术总监</a>
+										<a href="#" id="selected">架构师</a>
+										<a href="#" id="selected">CTO</a>
+										<a href="#">运维总监</a>
+										<a href="#">技术合伙人</a>
+										<a href="#">项目总监</a>
+										<a href="#">测试总监</a>
+										<a href="#">安全专家</a>
+										<a href="#">高端技术及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>项目管理</span></dt>
+									<dd>
+										<a href="#">项目经理</a>
+										<a href="#">项目助理</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>硬件开发</span></dt>
+									<dd>
+										<a href="#">硬件</a>
+										<a href="#">嵌入式</a>
+										<a href="#">自动化</a>
+										<a href="#">单片机</a>
+										<a href="#">电路设计</a>
+										<a href="#">驱动开发</a>
+										<a href="#">系统集成</a>
+										<a href="#">FPGA开发</a>
+										<a href="#">DSP开发</a>
+										<a href="#">ARM开发</a>
+										<a href="#">PCB工艺</a>
+										<a href="#">模具设计</a>
+										<a href="#">热传导</a>
+										<a href="#">材料工程师</a>
+										<a href="#">精益工程师</a>
+										<a href="#">射频工程师</a>
+										<a href="#">硬件开发及其他</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt><span>企业软件</span></dt>
+									<dd>
+										<a href="#">实施工程师</a>
+										<a href="#">售前工程师</a>
+										<a href="#">售后工程师</a>
+										<a href="#">BI工程师</a>
+										<a href="#">企业软件及其他</a>
+									</dd>
+								</dl>
+							</div>
+					</div>
+				</div>
+			</div>
+			<div class="home_banner"></div>
+			<ul class="job-tab">
+				<li class="hotTab select">热门职位</li>
+				<li class="newTab">最新职位</li>
+			</ul>
+			<div class="job">
+				<div class="job_list">
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me">
+											<div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div>
+										</div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me">
+											<div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div>
+										</div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="job_list hide">
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>数据分析师</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me">
+											<div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div>
+										</div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>微信运营专员</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me">
+											<div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div>
+										</div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="pos_list">
+						<li class="pos_list_item">
+							<div class="item_top">
+								<div class="top_1">
+									<div class="name">
+										<h2>大数据平台开发</h2>
+										<span>[一天前发布]</span>
+										<div class="chat_me"><div class="chat_up">
+												<div class="chat_left">
+													<div class="chat_left_top">
+														<div class="headpic">c</div>
+														<div class="head_name">cqyd</div>
+													</div>
+													<div class="chat_left_bot">
+														<div class="tips_text">
+															Hi,对我发布的职位感兴趣？用拉勾APP扫码，直接和我聊聊吧！
+														</div>
+													</div>
+												</div>
+												<div class="chat_right">
+													<img src="./image/下载.png" alt="">
+												</div>
+											</div></div>
+									</div>
+									<span>7k-14k</span>
+								</div>							
+							</div>
+							<div class="top_middle"><span>经验1-3年/本科</span></div>
+							<div class="label">
+								<span>架构师</span>
+								<span>hadoop</span>
+								<span>数据分析</span>
+							</div>
+							<div class="item_bottom">
+								<img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt="">
+								<div class="bottom-right">
+									<div class="company_name"><a href="#">重庆移动</a></div>
+									<div class="industry">
+										<span>移动互联网/</span>
+										<span>成熟型（不需要融资）</span>
+										<span>重庆</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="list_more"><a href="#">查看更多</a></div>
+			</div>
+			<ul class="module-tab">
+				<li class="select">热门公司</li>
+			</ul>
+			<div class="ad-company">
+				<ul>
+					<li class="company-item">
+						<div class="top">
+							<a href="#"><img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt=""></a>
+							<p class="company-name">重庆移动</p>
+							<p class="indus-stage">移动互联网/不需要融资</p>
+							<p class="advant">“和”你一起，连接未来</p>
+						</div>
+						<div class="bottom">
+							<a href="#" class="bottom1">
+								<p class="green">1</p>
+								<p class="grey">面试评价</p>
+							</a>
+							<a href="#" class="bottom2">
+								<p class="green">49</p>
+								<p class="grey">在招职位</p>
+							</a>
+							<a href="#" class="bottom3">
+								<p class="green">0%</p>
+								<p class="grey">简历处理率</p>
+							</a>
+						</div>
+					</li>
+					<li class="company-item">
+						<div class="top">
+							<a href="#"><img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt=""></a>
+							<p class="company-name">重庆移动</p>
+							<p class="indus-stage">移动互联网/不需要融资</p>
+							<p class="advant">“和”你一起，连接未来</p>
+						</div>
+						<div class="bottom">
+							<a href="#" class="bottom1">
+								<p class="green">1</p>
+								<p class="grey">面试评价</p>
+							</a>
+							<a href="#" class="bottom2">
+								<p class="green">49</p>
+								<p class="grey">在招职位</p>
+							</a>
+							<a href="#" class="bottom3">
+								<p class="green">0%</p>
+								<p class="grey">简历处理率</p>
+							</a>
+						</div>
+					</li>
+					<li class="company-item">
+						<div class="top">
+							<a href="#"><img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt=""></a>
+							<p class="company-name">重庆移动</p>
+							<p class="indus-stage">移动互联网/不需要融资</p>
+							<p class="advant">“和”你一起，连接未来</p>
+						</div>
+						<div class="bottom">
+							<a href="#" class="bottom1">
+								<p class="green">1</p>
+								<p class="grey">面试评价</p>
+							</a>
+							<a href="#" class="bottom2">
+								<p class="green">49</p>
+								<p class="grey">在招职位</p>
+							</a>
+							<a href="#" class="bottom3">
+								<p class="green">0%</p>
+								<p class="grey">简历处理率</p>
+							</a>
+						</div>
+					</li>
+					<li class="company-item">
+						<div class="top">
+							<a href="#"><img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt=""></a>
+							<p class="company-name">重庆移动</p>
+							<p class="indus-stage">移动互联网/不需要融资</p>
+							<p class="advant">“和”你一起，连接未来</p>
+						</div>
+						<div class="bottom">
+							<a href="#" class="bottom1">
+								<p class="green">1</p>
+								<p class="grey">面试评价</p>
+							</a>
+							<a href="#" class="bottom2">
+								<p class="green">49</p>
+								<p class="grey">在招职位</p>
+							</a>
+							<a href="#" class="bottom3">
+								<p class="green">0%</p>
+								<p class="grey">简历处理率</p>
+							</a>
+						</div>
+					</li>
+					<li class="company-item">
+						<div class="top">
+							<a href="#"><img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt=""></a>
+							<p class="company-name">重庆移动</p>
+							<p class="indus-stage">移动互联网/不需要融资</p>
+							<p class="advant">“和”你一起，连接未来</p>
+						</div>
+						<div class="bottom">
+							<a href="#" class="bottom1">
+								<p class="green">1</p>
+								<p class="grey">面试评价</p>
+							</a>
+							<a href="#" class="bottom2">
+								<p class="green">49</p>
+								<p class="grey">在招职位</p>
+							</a>
+							<a href="#" class="bottom3">
+								<p class="green">0%</p>
+								<p class="grey">简历处理率</p>
+							</a>
+						</div>
+					</li>
+					<li class="company-item">
+						<div class="top">
+							<a href="#"><img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt=""></a>
+							<p class="company-name">重庆移动</p>
+							<p class="indus-stage">移动互联网/不需要融资</p>
+							<p class="advant">“和”你一起，连接未来</p>
+						</div>
+						<div class="bottom">
+							<a href="#" class="bottom1">
+								<p class="green">1</p>
+								<p class="grey">面试评价</p>
+							</a>
+							<a href="#" class="bottom2">
+								<p class="green">49</p>
+								<p class="grey">在招职位</p>
+							</a>
+							<a href="#" class="bottom3">
+								<p class="green">0%</p>
+								<p class="grey">简历处理率</p>
+							</a>
+						</div>
+					</li>
+					<li class="company-item">
+						<div class="top">
+							<a href="#"><img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt=""></a>
+							<p class="company-name">重庆移动</p>
+							<p class="indus-stage">移动互联网/不需要融资</p>
+							<p class="advant">“和”你一起，连接未来</p>
+						</div>
+						<div class="bottom">
+							<a href="#" class="bottom1">
+								<p class="green">1</p>
+								<p class="grey">面试评价</p>
+							</a>
+							<a href="#" class="bottom2">
+								<p class="green">49</p>
+								<p class="grey">在招职位</p>
+							</a>
+							<a href="#" class="bottom3">
+								<p class="green">0%</p>
+								<p class="grey">简历处理率</p>
+							</a>
+						</div>
+					</li>
+					<li class="company-item">
+						<div class="top">
+							<a href="#"><img src="./image/CgqKkVgRYweAD4MtAAAzR3Jd4fM663.png" alt=""></a>
+							<p class="company-name">重庆移动</p>
+							<p class="indus-stage">移动互联网/不需要融资</p>
+							<p class="advant">“和”你一起，连接未来</p>
+						</div>
+						<div class="bottom">
+							<a href="#" class="bottom1">
+								<p class="green">1</p>
+								<p class="grey">面试评价</p>
+							</a>
+							<a href="#" class="bottom2">
+								<p class="green">49</p>
+								<p class="grey">在招职位</p>
+							</a>
+							<a href="#" class="bottom3">
+								<p class="green">0%</p>
+								<p class="grey">简历处理率</p>
+							</a>
+						</div>
+					</li>
+				</ul>
+				<div class="list_more1"><a href="#">查看更多</a></div>
+			</div>
+			<ul class="gr-tab">
+				<li class="select">友情链接</li>
+			</ul>
+			<div class="link">
+				<ul>
+					<li>拉勾网</li>
+					<li>大鲲</li>
+					<li>招聘</li>
+					<li>app下载</li>
+					<li>拉勾云</li>
+					<li>中大网校</li>
+					<li>人人都是产品经理</li>
+					<li>教师招聘</li>
+					<li>新疆人才网</li>
+					<li>研究报告</li>
+					<li>互联网的一些事</li>
+					<li>人才招聘网</li>
+					<li>找工作</li>
+					<li>字典</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="wrapper">
+			<a href="#"><img src="./image/footer_lagou_icon_75f0ebc.png" alt=""></a>
+			<div class="inner-wrapper">
+				<a href="#">拉勾APP</a>
+				<a href="#">拉勾微博</a>
+				<a href="#">拉勾微信</a>
+				<a href="#">拉勾小程序</a>
+				<a href="#">帮助中心</a>
+				<a href="#">联系我们</a>
+				<a href="#">招聘解决方案</a>
+				<a href="#">服务热线：4006-2828-35（9：00-18：00）</a>
+			</div>
+			<div class="copyright">
+				<p>©2017 Lagou 京ICP备14023790号-2 京公网安备 11010802024043号</p>
+			</div>
+		</div>
+	</div>
+	<div class="login fix">
+		<div class="tool-bar">
+			<em></em>
+			<p class="text">
+				<span class="text1">在拉勾，发现新的职业机会</span>
+				<span class="text2">266666公司</span>
+				<span class="text3">266666职位</span>
+			</p>
+			<div class="right">
+				<a href="#" class="denglu">登录</a>
+				<a href="#" class="zhuce">注册</a>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(function(){
+			$(".menu-box").mouseover(function(){
+				$(this).children(".menu-hid").show();
+				$(this).addClass("currer").siblings().removeClass("currer")
+			})
+			$(".menu-box,.menu-hid").mouseout(function(){
+				$(this).removeClass("currer")
+				$(".menu-hid").hide();
+			})
+			$(".chat_me").mouseover(function(){
+				$(this).children(".chat_up").show();
+			})
+			$(".chat_me").mouseout(function(){
+				$(".chat_up").hide();
+			})
+			$(".job-tab li").click(function(){
+				$(this).addClass("select").siblings().removeClass("select")
+				var index = $(this).index();
+				$(".job_list").eq(index).show().siblings().hide();
+			})
+				$(window).scroll(function(){
+			        var bottomEndHeight = $(".wrapper").height();
+			        var bodyHeight = $("body").height();
+			        var windowHeight = $(window).height();
+			        var scrollHeight = $(window).scrollTop();
+			        if((scrollHeight + windowHeight) >= (bodyHeight - bottomEndHeight)) {
+			          $(".login").removeClass("fix")
+			        }else {
+			          $(".login").addClass("fix")
+			        }
+		     })
+		})
+	</script>
+</body>
+</html>
